@@ -1,0 +1,7 @@
+package com.example.sofiyaorderservice.exception;
+
+public class DataNotFoundException extends RuntimeException {
+    public DataNotFoundException(String message) {
+        super(message);
+    }
+}

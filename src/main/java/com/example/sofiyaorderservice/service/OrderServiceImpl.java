@@ -22,7 +22,9 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public OrderEntity add(OrderDto orderDto, UUID userId, Integer amount) {
-        return null;
+       OrderEntity orderEntity = modelMapper.map(orderDto, OrderEntity.class);
+       OrderEntity save = orderRepository.save(orderEntity);
+        return save;
     }
 
 
@@ -54,6 +56,12 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public OrderEntity update(OrderDto update, UUID id, UUID userId) {
-        return null;
+        OrderEntity orderEntity = orderRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("Order not found"));
+        if (orderEntity.getUserId().equals(userId)) {
+            modelMapper.map(update, orderEntity);
+            return orderRepository.save(orderEntity);
+        }
+        throw new DataNotFoundException("Order not found");
     }
 }

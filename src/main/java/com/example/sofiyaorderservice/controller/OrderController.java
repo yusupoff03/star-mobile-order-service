@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("order/api/v1")
+@RequestMapping("/order")
 @RequiredArgsConstructor
 public class OrderController {
 

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("order/api/v1")
 @RequiredArgsConstructor
 public class OrderController {
 
@@ -26,17 +26,10 @@ public class OrderController {
     ){
         return ResponseEntity.ok(orderService.add(orderDto,userId,amount));
     }
-
-    @GetMapping("/get-all")
-    public ResponseEntity<List<OrderEntity>> getAll(
-            @RequestParam int size,
-            @RequestParam int page
-    ){
-        return ResponseEntity.ok(orderService.getAllProducts(size, page));
+    @GetMapping("/{userId}/get-user-orders")
+    public ResponseEntity<List<OrderEntity>> getUserOrders(@PathVariable UUID userId){
+        return ResponseEntity.ok(orderService.getUserOrders(userId));
     }
-
-
-
     @PutMapping("/{userId}/update")
     public ResponseEntity<OrderEntity> update(
             @RequestBody OrderDto orderDto,

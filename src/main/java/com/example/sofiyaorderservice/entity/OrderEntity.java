@@ -20,9 +20,4 @@ public class OrderEntity extends BaseEntity {
     private Double cost;
 
     private Double amount;
-
-
-
-
-
 }

@@ -11,6 +11,7 @@ public interface OrderService {
     List<OrderEntity> getAllProducts(int size, int page);
     Boolean deleteById(UUID id,UUID userId);
     OrderEntity update(OrderDto update,UUID id,UUID userId);
+    List<OrderEntity> getUserOrders(UUID userId);
 
 
 }

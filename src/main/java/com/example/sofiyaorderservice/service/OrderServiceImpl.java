@@ -23,10 +23,8 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public OrderEntity add(OrderDto orderDto, UUID userId, Integer amount) {
        OrderEntity orderEntity = modelMapper.map(orderDto, OrderEntity.class);
-       OrderEntity save = orderRepository.save(orderEntity);
-        return save;
+        return orderRepository.save(orderEntity);
     }
-
 
     @Override
     public List<OrderEntity> getAllProducts(int size, int page) {
@@ -60,5 +58,14 @@ public class OrderServiceImpl implements OrderService{
             return orderRepository.save(orderEntity);
         }
         throw new DataNotFoundException("Order not found");
+    }
+
+    @Override
+    public List<OrderEntity> getUserOrders(UUID userId) {
+        List<OrderEntity> orders = orderRepository.getOrderEntitiesByUserIdEquals(userId);
+        if(orders.isEmpty()){
+            throw new DataNotFoundException("Orders not found");
+        }
+        return orders;
     }
 }

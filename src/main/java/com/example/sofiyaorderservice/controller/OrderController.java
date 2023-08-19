@@ -26,24 +26,10 @@ public class OrderController {
     ){
         return ResponseEntity.ok(orderService.add(orderDto,userId,amount));
     }
-
-    @GetMapping("/get-all")
-    public ResponseEntity<List<OrderEntity>> getAll(
-            @RequestParam int size,
-            @RequestParam int page
-    ){
-        return ResponseEntity.ok(orderService.getAllProducts(size, page));
+    @GetMapping("/{userId}/get-user-orders")
+    public ResponseEntity<List<OrderEntity>> getUserOrders(@PathVariable UUID userId){
+        return ResponseEntity.ok(orderService.getUserOrders(userId));
     }
-
-    @GetMapping("/search")
-    public ResponseEntity<List<OrderEntity>> search(
-            @RequestParam int size,
-            @RequestParam int page,
-            @RequestParam String name
-    ){
-        return ResponseEntity.status(200).body(orderService.search(size, page, name));
-    }
-
     @PutMapping("/{userId}/update")
     public ResponseEntity<OrderEntity> update(
             @RequestBody OrderDto orderDto,

@@ -1,10 +1,11 @@
 server:
-  port: 8083
+  port: 8088
 spring:
   application:
     name: ORDER-SERVICE
   datasource:
     username: postgres
+    password: 1106
     url: jdbc:postgresql://localhost:5432/order_service_db
 
 
@@ -18,10 +19,14 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQL94Dialect
 
 services:
-  inventory-url: http://ORDER-SERVICE/order
+  inventory-url: http://ORDER-SERVICE/orders
 eureka:
   client:
     service-url:
       defaultUrl: ${EUREKA_URI:http://localhost:8761/eureka/}
     instance:
       preferIpAddress: true
+
+jwt:
+  secret:
+    key: 753778214125442A472D4B6150645367566B59703373367639792F423F452848

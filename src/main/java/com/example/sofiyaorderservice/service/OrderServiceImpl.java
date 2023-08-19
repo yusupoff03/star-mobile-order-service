@@ -38,10 +38,7 @@ public class OrderServiceImpl implements OrderService{
         return content;
     }
 
-    @Override
-    public List<OrderEntity> search(int page, int size, String name) {
-        return null;
-    }
+
 
     @Override
     public Boolean deleteById(UUID id, UUID userId) {

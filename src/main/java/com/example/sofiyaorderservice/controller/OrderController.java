@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 @RequiredArgsConstructor
 public class OrderController {
 
@@ -35,14 +35,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getAllProducts(size, page));
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<OrderEntity>> search(
-            @RequestParam int size,
-            @RequestParam int page,
-            @RequestParam String name
-    ){
-        return ResponseEntity.status(200).body(orderService.search(size, page, name));
-    }
+
 
     @PutMapping("/{userId}/update")
     public ResponseEntity<OrderEntity> update(
